@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -20,12 +19,11 @@ const Navbar = () => {
             <span className="text-2xl font-bold neon-text-purple">GALAXY</span>
           </Link>
           
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/" className="text-white hover:text-neon-blue transition-colors">Home</Link>
-            <Link to="/catalog" className="text-white hover:text-neon-blue transition-colors">Catalog</Link>
-            <Link to="/about" className="text-white hover:text-neon-blue transition-colors">About</Link>
-            <Link to="/support" className="text-white hover:text-neon-blue transition-colors">Support</Link>
+            <Link to="/" className="text-white hover:text-neon-blue transition-colors">Início</Link>
+            <Link to="/catalog" className="text-white hover:text-neon-blue transition-colors">Catálogo</Link>
+            <Link to="/about" className="text-white hover:text-neon-blue transition-colors">Sobre</Link>
+            <Link to="/support" className="text-white hover:text-neon-blue transition-colors">Suporte</Link>
             
             <div className="pl-4 border-l border-gray-600 flex items-center gap-2">
               <Button variant="outline" size="sm" className="border-neon-purple hover:bg-neon-purple/20">
@@ -34,12 +32,11 @@ const Navbar = () => {
               </Button>
               <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20">
                 <User className="w-4 h-4 mr-2" />
-                Login
+                Entrar
               </Button>
             </div>
           </div>
           
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <Button variant="ghost" onClick={toggleMenu} className="text-white">
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -47,14 +44,13 @@ const Navbar = () => {
           </div>
         </div>
         
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden pt-4 pb-2 border-t border-gray-700 mt-4">
             <div className="flex flex-col space-y-2">
-              <Link to="/" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Home</Link>
-              <Link to="/catalog" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Catalog</Link>
-              <Link to="/about" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">About</Link>
-              <Link to="/support" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Support</Link>
+              <Link to="/" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Início</Link>
+              <Link to="/catalog" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Catálogo</Link>
+              <Link to="/about" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Sobre</Link>
+              <Link to="/support" className="px-3 py-2 text-white hover:bg-white/5 rounded-md">Suporte</Link>
               
               <div className="flex flex-col pt-2 border-t border-gray-700 mt-2">
                 <Button variant="outline" size="sm" className="border-neon-purple hover:bg-neon-purple/20 mb-2">
@@ -63,7 +59,7 @@ const Navbar = () => {
                 </Button>
                 <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20">
                   <User className="w-4 h-4 mr-2" />
-                  Login
+                  Entrar
                 </Button>
               </div>
             </div>

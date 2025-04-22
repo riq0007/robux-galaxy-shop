@@ -12,35 +12,35 @@ const LoginOptions = () => {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="neon-text-blue">Join</span> Our Community
+              <span className="neon-text-blue">Junte-se</span> à Nossa Comunidade
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Create an account or sign in to track your orders, receive exclusive deals, and join our community of gamers.
+              Crie uma conta ou faça login para acompanhar seus pedidos, receber ofertas exclusivas e participar da nossa comunidade de jogadores.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             <Button className="h-auto py-6 flex flex-col items-center border border-neon-purple bg-transparent hover:bg-neon-purple/20">
               <MessageSquare className="w-8 h-8 mb-3 text-neon-purple" />
-              <span className="text-lg font-medium">Discord Login</span>
-              <span className="text-xs text-gray-400 mt-1">Connect with Discord</span>
+              <span className="text-lg font-medium">Login com Discord</span>
+              <span className="text-xs text-gray-400 mt-1">Conecte-se com Discord</span>
             </Button>
             
             <Button className="h-auto py-6 flex flex-col items-center border border-neon-blue bg-transparent hover:bg-neon-blue/20">
               <User className="w-8 h-8 mb-3 text-neon-blue" />
-              <span className="text-lg font-medium">Google Login</span>
-              <span className="text-xs text-gray-400 mt-1">Sign in with Google</span>
+              <span className="text-lg font-medium">Login com Google</span>
+              <span className="text-xs text-gray-400 mt-1">Faça login com Google</span>
             </Button>
             
             <Button className="h-auto py-6 flex flex-col items-center border border-neon-purple bg-transparent hover:bg-neon-purple/20">
               <Gamepad className="w-8 h-8 mb-3 text-neon-purple" />
-              <span className="text-lg font-medium">Roblox Login</span>
-              <span className="text-xs text-gray-400 mt-1">Connect your Roblox</span>
+              <span className="text-lg font-medium">Login com Roblox</span>
+              <span className="text-xs text-gray-400 mt-1">Conecte sua conta Roblox</span>
             </Button>
           </div>
           
           <div className="text-center mt-8 text-gray-400">
-            <p>Don't have an account? <a href="#" className="text-neon-blue hover:underline">Create one</a> in seconds.</p>
+            <p>Não tem uma conta? <a href="#" className="text-neon-blue hover:underline">Crie uma</a> em segundos.</p>
           </div>
         </div>
       </div>

@@ -12,40 +12,40 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block">The Best Place to Buy</span>
+            <span className="block">O Melhor Lugar para Comprar</span>
             <span className="neon-text-blue">Robux</span> 
-            <span className="text-white">for Your</span> 
-            <span className="neon-text-purple">Games</span>
+            <span className="text-white">para Seus</span> 
+            <span className="neon-text-purple">Jogos</span>
           </h1>
           
           <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            Fast delivery, secure transactions, and 24/7 support. Join thousands of satisfied gamers who trust us for their gaming currency needs.
+            Entrega rápida, transações seguras e suporte 24/7. Junte-se a milhares de jogadores satisfeitos que confiam em nós para suas necessidades de moeda de jogo.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link to="/catalog">
               <Button className="neon-button w-full sm:w-auto text-lg">
-                View Catalog
+                Ver Catálogo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button variant="outline" className="border-neon-blue hover:bg-neon-blue/20 w-full sm:w-auto text-lg">
-              Learn More
+              Saiba Mais
             </Button>
           </div>
           
           <div className="flex items-center justify-center mt-12 space-x-8">
             <div className="flex items-center">
               <ShieldCheck className="w-5 h-5 text-neon-blue mr-2" />
-              <span className="text-gray-300">Secure Payments</span>
+              <span className="text-gray-300">Pagamentos Seguros</span>
             </div>
             <div className="flex items-center">
               <ShieldCheck className="w-5 h-5 text-neon-blue mr-2" />
-              <span className="text-gray-300">24/7 Support</span>
+              <span className="text-gray-300">Suporte 24/7</span>
             </div>
             <div className="flex items-center">
               <ShieldCheck className="w-5 h-5 text-neon-blue mr-2" />
-              <span className="text-gray-300">Fast Delivery</span>
+              <span className="text-gray-300">Entrega Rápida</span>
             </div>
           </div>
         </div>

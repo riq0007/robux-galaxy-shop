@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Discord, Gamepad, User } from "lucide-react";
+import { MessageSquare, User, Gamepad } from "lucide-react";
 
 const LoginOptions = () => {
   return (
@@ -21,7 +21,7 @@ const LoginOptions = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             <Button className="h-auto py-6 flex flex-col items-center border border-neon-purple bg-transparent hover:bg-neon-purple/20">
-              <Discord className="w-8 h-8 mb-3 text-neon-purple" />
+              <MessageSquare className="w-8 h-8 mb-3 text-neon-purple" />
               <span className="text-lg font-medium">Discord Login</span>
               <span className="text-xs text-gray-400 mt-1">Connect with Discord</span>
             </Button>

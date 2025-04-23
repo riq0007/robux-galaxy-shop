@@ -7,8 +7,20 @@ import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 
+// Interface para os produtos
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  description: string;
+  price: string;
+  game?: string;
+  rarity?: string;
+  type?: string;
+}
+
 // Produtos do Blox Fruits
-const bloxFruitsProducts = [
+const bloxFruitsProducts: Product[] = [
   {
     id: 1,
     name: "Rocket Fruit",
@@ -16,7 +28,8 @@ const bloxFruitsProducts = [
     rarity: "Common",
     type: "Natural",
     price: "R$19,90",
-    description: "Um poder explosivo que permite lançar projéteis."
+    description: "Um poder explosivo que permite lançar projéteis.",
+    game: "Blox Fruits"
   },
   {
     id: 2,
@@ -25,44 +38,57 @@ const bloxFruitsProducts = [
     rarity: "Mythical",
     type: "Ancient",
     price: "R$299,90",
-    description: "O poder lendário do dragão ancestral."
+    description: "O poder lendário do dragão ancestral.",
+    game: "Blox Fruits"
   },
   // ... Adicione mais frutas aqui
 ];
 
 // Produtos do Brookhaven
-const brookhavenProducts = [
+const brookhavenProducts: Product[] = [
   {
     id: 101,
     name: "Premium",
     image: "https://images.unsplash.com/photo-1636590256029-37dbaf0a8524?q=80&w=1972",
     description: "Acesso a recursos premium no jogo",
-    price: "R$49,90"
+    price: "R$49,90",
+    game: "Brookhaven RP",
+    rarity: "Special",
+    type: "Game Pass"
   },
   {
     id: 102,
     name: "VIP",
     image: "https://images.unsplash.com/photo-1636590256029-37dbaf0a8524?q=80&w=1972",
     description: "Status VIP e benefícios exclusivos",
-    price: "R$99,90"
+    price: "R$99,90",
+    game: "Brookhaven RP",
+    rarity: "Rare",
+    type: "Game Pass"
   }
 ];
 
 // Produtos do Adopt Me
-const adoptMeProducts = [
+const adoptMeProducts: Product[] = [
   {
     id: 201,
     name: "VIP Pass",
     image: "https://images.unsplash.com/photo-1636590256029-37dbaf0a8524?q=80&w=1972",
     description: "Acesso VIP ao Adopt Me",
-    price: "R$34,90"
+    price: "R$34,90",
+    game: "Adopt Me!",
+    rarity: "Uncommon",
+    type: "Game Pass"
   },
   {
     id: 202,
     name: "Premium Pets",
     image: "https://images.unsplash.com/photo-1636590256029-37dbaf0a8524?q=80&w=1972",
     description: "Pets exclusivos e raros",
-    price: "R$69,90"
+    price: "R$69,90",
+    game: "Adopt Me!",
+    rarity: "Rare",
+    type: "Game Pass"
   }
 ];
 
@@ -127,7 +153,7 @@ const Catalog = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute top-2 right-2 bg-neon-blue/80 text-white text-xs rounded-full px-2 py-1">
-                        {selectedGame === 'all' ? product.game : ''}
+                        {selectedGame === 'all' && product.game ? product.game : ''}
                       </div>
                     </div>
                     
@@ -148,7 +174,7 @@ const Catalog = () => {
                   </Card>
                 </HoverCardTrigger>
                 
-                {product.rarity && (
+                {product.rarity && product.type && (
                   <HoverCardContent className="w-80 bg-dark-bg border border-neon-blue p-4">
                     <div className="space-y-2">
                       <h4 className="text-lg font-semibold text-white">{product.name}</h4>

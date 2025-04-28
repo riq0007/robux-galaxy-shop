@@ -1,21 +1,18 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Link } from 'react-router-dom';
-
 const HeroSection = () => {
-  return (
-    <section className="pt-32 pb-20 relative">
+  return <section className="pt-32 pb-20 relative">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1633320926216-85d7c479d350?q=80&w=1974')] bg-cover bg-center opacity-10"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block">O Melhor Lugar para Comprar</span>
-            <span className="neon-text-blue">Robux</span> 
+            <span className="neon-text-blue">Robux </span> 
             <span className="text-white">para Seus</span> 
-            <span className="neon-text-purple">Jogos</span>
+            <span className="neon-text-purple"> Jogos</span>
           </h1>
           
           <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
@@ -50,8 +47,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;

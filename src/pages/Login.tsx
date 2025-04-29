@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -60,6 +59,16 @@ const Login = () => {
     },
   });
 
+  // Reset the other form when switching tabs to avoid data contamination
+  const switchTab = (tab: 'login' | 'register') => {
+    if (tab === 'login') {
+      registerForm.reset();
+    } else {
+      loginForm.reset();
+    }
+    setActiveTab(tab);
+  };
+
   const onLoginSubmit = (values: LoginFormValues) => {
     login(values.email, values.password);
   };
@@ -87,6 +96,15 @@ const Login = () => {
                 ? 'Entre para acessar os melhores preços do universo Robux' 
                 : 'Cadastre-se para aproveitar todas as vantagens'}
             </p>
+            
+            {/* Credentials info */}
+            <div className="mt-2 p-2 bg-gray-800/50 rounded-md">
+              <p className="text-xs text-gray-300">
+                <strong>Credenciais pré-definidas:</strong><br/>
+                <span className="text-neon-blue">Admin:</span> admin@admin.com / admin1234<br/>
+                <span className="text-neon-purple">Usuário:</span> usuario@teste.com / senha123
+              </p>
+            </div>
           </div>
           
           {/* Tab selection */}
@@ -95,7 +113,7 @@ const Login = () => {
               className={`flex-1 py-3 text-center ${activeTab === 'login' 
                 ? 'border-b-2 border-neon-blue font-bold text-white' 
                 : 'border-b border-gray-700 text-gray-400'}`}
-              onClick={() => setActiveTab('login')}
+              onClick={() => switchTab('login')}
             >
               Entrar
             </button>
@@ -103,7 +121,7 @@ const Login = () => {
               className={`flex-1 py-3 text-center ${activeTab === 'register' 
                 ? 'border-b-2 border-neon-purple font-bold text-white' 
                 : 'border-b border-gray-700 text-gray-400'}`}
-              onClick={() => setActiveTab('register')}
+              onClick={() => switchTab('register')}
             >
               Cadastrar
             </button>

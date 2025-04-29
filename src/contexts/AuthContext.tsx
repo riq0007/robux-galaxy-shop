@@ -28,7 +28,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock database for demo purposes
+// Mock database for demo purposes with predefined users
 const MOCK_USERS = [
   {
     id: 'admin-1',
@@ -114,7 +114,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return;
     }
     
-    // Create new user
+    // Create new user with user role
     const newUser = {
       id: `user-${Date.now()}`,
       name,
@@ -124,9 +124,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
     
     // In a real app, you would send this to your backend
-    // For this mock version, we'll just pretend it worked
-    MOCK_USERS.push({...newUser, password});
+    // For this mock version, we'll add it to our mock database
+    const newUserWithPassword = {...newUser, password};
+    MOCK_USERS.push(newUserWithPassword);
     
+    // Log in the user automatically
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));
     

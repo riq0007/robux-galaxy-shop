@@ -1,8 +1,13 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+
 const HeroSection = () => {
+  const { isAuthenticated } = useAuth();
+  
   return <section className="pt-32 pb-20 relative">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1633320926216-85d7c479d350?q=80&w=1974')] bg-cover bg-center opacity-10"></div>
       
@@ -11,9 +16,9 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block">O Melhor Lugar para</span>
             <span className="neon-text-green"> Comprar</span>
-            <span className="neon-text-blue">Robux </span> 
+            <span className="neon-text-blue">Robux </span> 
             <span className="text-white">para Seus</span> 
-            <span className="neon-text-purple"> Jogos</span>
+            <span className="neon-text-purple"> Jogos</span>
           </h1>
           
           <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
@@ -27,9 +32,11 @@ const HeroSection = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button variant="outline" className="border-neon-blue hover:bg-neon-blue/20 w-full sm:w-auto text-lg">
-              Saiba Mais
-            </Button>
+            <Link to={isAuthenticated ? "/about" : "/login"}>
+              <Button variant="outline" className="border-neon-blue hover:bg-neon-blue/20 w-full sm:w-auto text-lg">
+                {isAuthenticated ? "Saiba Mais" : "Entrar / Cadastrar"}
+              </Button>
+            </Link>
           </div>
           
           <div className="flex items-center justify-center mt-12 space-x-8">
@@ -50,4 +57,5 @@ const HeroSection = () => {
       </div>
     </section>;
 };
+
 export default HeroSection;

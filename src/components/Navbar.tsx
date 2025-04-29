@@ -1,13 +1,32 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { MessageSquare, User, Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { MessageSquare, User, Menu, X, ShoppingCart, LogOut } from "lucide-react";
+import { useAuth } from '@/contexts/AuthContext';
+import { useCart } from '@/contexts/CartContext';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
+  const { items, getCount, getTotal, recentlyAdded } = useCart();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  
+  const handleLogin = () => {
+    navigate('/login');
+  };
+  
+  const formatPrice = (price: number) => {
+    return `R$${price.toFixed(2).replace('.', ',')}`;
   };
 
   return (
@@ -30,10 +49,89 @@ const Navbar = () => {
                 <MessageSquare className="w-4 h-4 mr-2" />
                 Discord
               </Button>
-              <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20">
-                <User className="w-4 h-4 mr-2" />
-                Entrar
-              </Button>
+              
+              {isAuthenticated ? (
+                <>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20 relative">
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        Carrinho
+                        {getCount() > 0 && (
+                          <span className="absolute -top-2 -right-2 bg-neon-purple text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                            {getCount()}
+                          </span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80 p-0">
+                      <div className="p-4 border-b border-gray-700">
+                        <div className="font-medium">Seu Carrinho</div>
+                        <div className="text-xs text-gray-400">{getCount()} itens - {formatPrice(getTotal())}</div>
+                      </div>
+                      
+                      {recentlyAdded.length > 0 && (
+                        <div className="p-4 border-b border-gray-700 animate-fade-in">
+                          <div className="font-medium mb-2">Adicionado Recentemente</div>
+                          <div className="space-y-2">
+                            {recentlyAdded.map((item, index) => (
+                              <div key={`${item.id}-${index}`} className="flex items-center gap-2">
+                                {item.image && (
+                                  <img src={item.image} alt={item.name} className="w-10 h-10 rounded object-cover" />
+                                )}
+                                <div className="flex-1">
+                                  <div className="text-sm font-medium">{item.name}</div>
+                                  <div className="text-xs text-gray-400">{item.price}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="p-4">
+                        {items.length > 0 ? (
+                          <div className="space-y-2">
+                            {items.slice(0, 3).map((item) => (
+                              <div key={item.id} className="flex items-center gap-2">
+                                {item.image && (
+                                  <img src={item.image} alt={item.name} className="w-10 h-10 rounded object-cover" />
+                                )}
+                                <div className="flex-1">
+                                  <div className="text-sm font-medium">{item.name}</div>
+                                  <div className="text-xs text-gray-400">{item.price} x {item.quantity}</div>
+                                </div>
+                              </div>
+                            ))}
+                            {items.length > 3 && (
+                              <div className="text-xs text-center text-gray-400">
+                                + {items.length - 3} outros itens
+                              </div>
+                            )}
+                            <Button className="w-full mt-2 bg-neon-purple hover:bg-neon-purple/80">
+                              Ver Carrinho Completo
+                            </Button>
+                          </div>
+                        ) : (
+                          <div className="text-center py-4 text-gray-400">
+                            Seu carrinho está vazio
+                          </div>
+                        )}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                  
+                  <Button variant="outline" size="sm" className="border-neon-red hover:bg-neon-red/20" onClick={logout}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sair
+                  </Button>
+                </>
+              ) : (
+                <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20" onClick={handleLogin}>
+                  <User className="w-4 h-4 mr-2" />
+                  Entrar
+                </Button>
+              )}
             </div>
           </div>
           
@@ -57,10 +155,29 @@ const Navbar = () => {
                   <MessageSquare className="w-4 h-4 mr-2" />
                   Discord
                 </Button>
-                <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20">
-                  <User className="w-4 h-4 mr-2" />
-                  Entrar
-                </Button>
+                
+                {isAuthenticated ? (
+                  <>
+                    <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20 mb-2 relative">
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Carrinho
+                      {getCount() > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-neon-purple text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                          {getCount()}
+                        </span>
+                      )}
+                    </Button>
+                    <Button variant="outline" size="sm" className="border-neon-red hover:bg-neon-red/20" onClick={logout}>
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sair
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20" onClick={handleLogin}>
+                    <User className="w-4 h-4 mr-2" />
+                    Entrar
+                  </Button>
+                )}
               </div>
             </div>
           </div>

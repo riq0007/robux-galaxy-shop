@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -31,6 +30,7 @@ export default {
         foreground: 'hsl(var(--foreground))',
         'neon-blue': '#33C3F0',
         'neon-purple': '#8B5CF6',
+        'neon-green': '#00FF00',
         'dark-bg': '#1A1F2C',
         'darker-bg': '#151822',
         primary: {
@@ -112,6 +112,7 @@ export default {
       boxShadow: {
         'neon-blue': '0 0 5px #33C3F0, 0 0 10px #33C3F0',
         'neon-purple': '0 0 5px #8B5CF6, 0 0 10px #8B5CF6',
+        'neon-green': '0 0 5px #00FF00, 0 0 10px #00FF00',
       },
       backgroundImage: {
         'radial-dark': 'radial-gradient(circle at center, #1A1F2C 0%, #151822 100%)',

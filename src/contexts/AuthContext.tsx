@@ -3,23 +3,50 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
+// Define user roles
+export type UserRole = 'user' | 'admin';
+
 interface User {
   id: string;
   name: string;
   email: string;
   avatar?: string;
+  role: UserRole;
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  isAdmin: boolean;
   isLoading: boolean;
-  login: (provider: string) => void;
+  login: (email: string, password: string) => void;
+  register: (name: string, email: string, password: string) => void;
   logout: () => void;
   requireAuth: () => boolean;
+  requireAdmin: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Mock database for demo purposes
+const MOCK_USERS = [
+  {
+    id: 'admin-1',
+    name: 'Administrador',
+    email: 'admin@admin.com',
+    password: 'admin1234',
+    role: 'admin' as UserRole,
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin'
+  },
+  {
+    id: 'user-1',
+    name: 'Usuário Teste',
+    email: 'usuario@teste.com',
+    password: 'senha123',
+    role: 'user' as UserRole,
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=123'
+  }
+];
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -36,30 +63,80 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(false);
   }, []);
 
-  const login = (provider: string) => {
-    // Mock login - in a real app, this would connect to Firebase/OAuth
+  const login = (email: string, password: string) => {
     setIsLoading(true);
     
-    setTimeout(() => {
-      // Mock user data
-      const mockUser = {
-        id: '123456',
-        name: 'Usuário Teste',
-        email: 'usuario@teste.com',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=123'
-      };
+    // Find user with matching email and password
+    const foundUser = MOCK_USERS.find(u => 
+      u.email.toLowerCase() === email.toLowerCase() && u.password === password
+    );
+    
+    if (foundUser) {
+      // Remove password from user object before storing
+      const { password: _, ...safeUserData } = foundUser;
       
-      setUser(mockUser);
-      localStorage.setItem('user', JSON.stringify(mockUser));
-      setIsLoading(false);
+      setUser(safeUserData);
+      localStorage.setItem('user', JSON.stringify(safeUserData));
       
       toast({
         title: "Login realizado com sucesso",
-        description: `Bem-vindo, ${mockUser.name}!`,
+        description: `Bem-vindo, ${safeUserData.name}!`,
       });
       
-      navigate('/');
-    }, 1000);
+      // Redirect admin to admin dashboard, regular users to home
+      if (safeUserData.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+    } else {
+      toast({
+        title: "Falha no login",
+        description: "Email ou senha incorretos",
+        variant: "destructive"
+      });
+    }
+    
+    setIsLoading(false);
+  };
+  
+  const register = (name: string, email: string, password: string) => {
+    setIsLoading(true);
+    
+    // Check if email already exists
+    if (MOCK_USERS.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+      toast({
+        title: "Erro no cadastro",
+        description: "Este email já está cadastrado",
+        variant: "destructive"
+      });
+      setIsLoading(false);
+      return;
+    }
+    
+    // Create new user
+    const newUser = {
+      id: `user-${Date.now()}`,
+      name,
+      email,
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${Date.now()}`,
+      role: 'user' as UserRole
+    };
+    
+    // In a real app, you would send this to your backend
+    // For this mock version, we'll just pretend it worked
+    MOCK_USERS.push({...newUser, password});
+    
+    setUser(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
+    
+    toast({
+      title: "Cadastro realizado com sucesso",
+      description: `Bem-vindo, ${name}!`,
+    });
+    
+    navigate('/');
+    setIsLoading(false);
   };
   
   const logout = () => {
@@ -85,15 +162,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return true;
   };
   
+  const requireAdmin = () => {
+    if (!user) {
+      toast({
+        title: "Login necessário",
+        description: "Você precisa estar logado para acessar esta funcionalidade",
+        variant: "destructive"
+      });
+      navigate('/login');
+      return false;
+    }
+    
+    if (user.role !== 'admin') {
+      toast({
+        title: "Acesso negado",
+        description: "Você não tem permissão para acessar esta área",
+        variant: "destructive"
+      });
+      navigate('/');
+      return false;
+    }
+    
+    return true;
+  };
+  
   return (
     <AuthContext.Provider 
       value={{ 
         user, 
         isAuthenticated: !!user, 
+        isAdmin: user?.role === 'admin',
         isLoading, 
         login, 
+        register,
         logout,
-        requireAuth
+        requireAuth,
+        requireAdmin
       }}
     >
       {children}

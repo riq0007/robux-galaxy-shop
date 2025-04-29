@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +24,8 @@ interface OrderDetails {
   };
 }
 
-interface Order {
+// Export the interface so it can be imported in other files
+export interface Order {
   id: string;
   userId: string;
   userName: string;

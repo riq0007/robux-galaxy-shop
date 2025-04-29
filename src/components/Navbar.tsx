@@ -108,7 +108,7 @@ const Navbar = () => {
                                 + {items.length - 3} outros itens
                               </div>
                             )}
-                            <Button className="w-full mt-2 bg-neon-purple hover:bg-neon-purple/80">
+                            <Button className="w-full mt-2 bg-neon-purple hover:bg-neon-purple/80" onClick={() => navigate('/cart')}>
                               Ver Carrinho Completo
                             </Button>
                           </div>
@@ -158,7 +158,12 @@ const Navbar = () => {
                 
                 {isAuthenticated ? (
                   <>
-                    <Button variant="outline" size="sm" className="border-neon-blue hover:bg-neon-blue/20 mb-2 relative">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="border-neon-blue hover:bg-neon-blue/20 mb-2 relative"
+                      onClick={() => navigate('/cart')}
+                    >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Carrinho
                       {getCount() > 0 && (

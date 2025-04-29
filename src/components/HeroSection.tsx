@@ -1,12 +1,15 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck, Star } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+
 const HeroSection = () => {
   const {
     isAuthenticated
   } = useAuth();
+  
   return <section className="pt-32 pb-20 relative">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1633320926216-85d7c479d350?q=80&w=1974')] bg-cover bg-center opacity-10"></div>
       
@@ -14,7 +17,7 @@ const HeroSection = () => {
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block">O Melhor Lugar para</span>
-            <span className="neon-text-green">Comprar </span>
+            <span className="neon-text-green">Comprar </span>
             <span className="neon-text-blue">Robux </span> 
             <span className="text-white">para Seus</span> 
             <span className="neon-text-purple"> Jogos</span>
@@ -38,7 +41,7 @@ const HeroSection = () => {
             </Link>
           </div>
           
-          <div className="flex items-center justify-center mt-12 space-x-8">
+          <div className="flex flex-wrap items-center justify-center mt-12 space-x-4 md:space-x-8">
             <div className="flex items-center">
               <ShieldCheck className="w-5 h-5 text-neon-blue mr-2" />
               <span className="text-gray-300">Pagamentos Seguros</span>
@@ -51,9 +54,14 @@ const HeroSection = () => {
               <ShieldCheck className="w-5 h-5 text-neon-blue mr-2" />
               <span className="text-gray-300">Entrega Rápida</span>
             </div>
+            <div className="flex items-center mt-2 md:mt-0">
+              <Star className="w-5 h-5 text-neon-purple mr-2" />
+              <span className="text-gray-300">Planos VIP até 10000 Robux</span>
+            </div>
           </div>
         </div>
       </div>
     </section>;
 };
+
 export default HeroSection;

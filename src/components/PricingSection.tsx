@@ -91,6 +91,58 @@ const planPackages = {
       features: ["Entrega Instantânea", "Suporte VIP", "Suporte Discord", "Benefícios de Membro", "Vantagens Exclusivas", "Bônus Mensais"],
       popular: false
     }
+  ],
+  god: [
+    {
+      id: 401,
+      name: "God",
+      robux: "4000",
+      price: "R$159,90",
+      features: ["Entrega Instantânea", "Suporte Premium", "Suporte Discord Exclusivo", "Benefícios VIP", "Vantagens Exclusivas", "Acesso Antecipado"],
+      popular: false
+    },
+    {
+      id: 402,
+      name: "God Plus",
+      robux: "5000",
+      price: "R$189,90",
+      features: ["Entrega Instantânea", "Suporte Premium", "Suporte Discord Exclusivo", "Benefícios VIP", "Vantagens Exclusivas", "Acesso Antecipado"],
+      popular: true
+    },
+    {
+      id: 403,
+      name: "God Ultimate",
+      robux: "6000",
+      price: "R$219,90",
+      features: ["Entrega Instantânea", "Suporte Premium", "Suporte Discord Exclusivo", "Benefícios VIP", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Exclusivos"],
+      popular: false
+    }
+  ],
+  hacker: [
+    {
+      id: 501,
+      name: "Hacker",
+      robux: "7000",
+      price: "R$249,90",
+      features: ["Entrega Instantânea", "Suporte Dedicado", "Suporte Discord Privado", "Benefícios Premium", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Raros"],
+      popular: false
+    },
+    {
+      id: 502,
+      name: "Admin",
+      robux: "8500",
+      price: "R$299,90",
+      features: ["Entrega Instantânea", "Suporte Exclusivo", "Suporte Discord Privado", "Benefícios Premium", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Raros", "Convites Especiais"],
+      popular: true
+    },
+    {
+      id: 503,
+      name: "VIP",
+      robux: "10000",
+      price: "R$349,90",
+      features: ["Entrega Instantânea", "Suporte Personalizado", "Suporte Discord Privado", "Benefícios Premium", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Legendários", "Convites VIP", "Eventos Exclusivos"],
+      popular: true
+    }
   ]
 };
 
@@ -102,6 +154,62 @@ const PricingSection = () => {
     if (requireAuth()) {
       addToCart(pkg);
     }
+  };
+
+  // Create carousel package
+  const renderPackageCarousel = (planKey: string, planList: any[]) => {
+    const isPremium = planKey === 'god' || planKey === 'hacker';
+    
+    return (
+      <div className="relative">
+        <Carousel className="w-full">
+          <CarouselContent>
+            {planList.map((pkg) => (
+              <CarouselItem key={pkg.id}>
+                <div className={`relative rounded-lg ${pkg.popular ? 'neon-border-purple' : 'border border-gray-700'} 
+                  bg-gradient-to-b from-dark-bg to-darker-bg p-6 flex flex-col h-full min-h-[400px]`}>
+                  {pkg.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-neon-purple text-white text-xs font-semibold px-3 py-1 rounded-full animate-pulse-neon">
+                      Mais Popular
+                    </div>
+                  )}
+                  
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-semibold text-white mb-2">{pkg.name}</h3>
+                    <div className="mb-4">
+                      <span className={`text-4xl font-bold text-white`}>{pkg.robux}</span>
+                      <span className={`${isPremium ? "text-neon-purple" : "text-neon-blue"} ml-1`}>ROBUX</span>
+                    </div>
+                    <div className="text-2xl font-semibold text-gray-300">{pkg.price}</div>
+                  </div>
+                  
+                  <ul className="space-y-3 mb-6 flex-grow">
+                    {pkg.features.map((feature: string, index: number) => (
+                      <li key={index} className="flex items-center">
+                        <ShieldCheck className={`w-5 h-5 mr-2 ${pkg.popular || isPremium ? 'text-neon-purple' : 'text-neon-blue'}`} />
+                        <span className="text-gray-300">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    className={pkg.popular || isPremium ? 
+                      "w-full bg-neon-purple hover:bg-neon-purple/80 text-white" : 
+                      "w-full bg-transparent border border-neon-blue hover:bg-neon-blue/20 text-white"
+                    }
+                    onClick={() => handleBuyNow(pkg)}
+                  >
+                    Comprar Agora <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-0 top-1/2" />
+          <CarouselNext className="absolute right-0 top-1/2" />
+        </Carousel>
+      </div>
+    );
   };
   
   return (
@@ -118,135 +226,26 @@ const PricingSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {/* Starter Package Carousel */}
-          <div className="relative">
-            <Carousel className="w-full">
-              <CarouselContent>
-                {planPackages.starter.map((pkg) => (
-                  <CarouselItem key={pkg.id}>
-                    <div className={`relative rounded-lg border border-gray-700 bg-gradient-to-b from-dark-bg to-darker-bg p-6 flex flex-col h-full min-h-[400px]`}>
-                      <div className="text-center mb-6">
-                        <h3 className="text-xl font-semibold text-white mb-2">{pkg.name}</h3>
-                        <div className="mb-4">
-                          <span className="text-4xl font-bold text-white">{pkg.robux}</span>
-                          <span className="text-neon-blue ml-1">ROBUX</span>
-                        </div>
-                        <div className="text-2xl font-semibold text-gray-300">{pkg.price}</div>
-                      </div>
-                      
-                      <ul className="space-y-3 mb-6 flex-grow">
-                        {pkg.features.map((feature, index) => (
-                          <li key={index} className="flex items-center">
-                            <ShieldCheck className="w-5 h-5 mr-2 text-neon-blue" />
-                            <span className="text-gray-300">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <Button 
-                        className="w-full bg-transparent border border-neon-blue hover:bg-neon-blue/20 text-white"
-                        onClick={() => handleBuyNow(pkg)}
-                      >
-                        Comprar Agora <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-0 top-1/2" />
-              <CarouselNext className="absolute right-0 top-1/2" />
-            </Carousel>
-          </div>
-          
-          {/* Standard Package Carousel */}
-          <div className="relative">
-            <Carousel className="w-full">
-              <CarouselContent>
-                {planPackages.standard.map((pkg) => (
-                  <CarouselItem key={pkg.id}>
-                    <div className={`relative rounded-lg ${pkg.popular ? 'neon-border-purple' : 'border border-gray-700'} bg-gradient-to-b from-dark-bg to-darker-bg p-6 flex flex-col h-full min-h-[400px]`}>
-                      {pkg.popular && (
-                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-neon-purple text-white text-xs font-semibold px-3 py-1 rounded-full animate-pulse-neon">
-                          Mais Popular
-                        </div>
-                      )}
-                      
-                      <div className="text-center mb-6">
-                        <h3 className="text-xl font-semibold text-white mb-2">{pkg.name}</h3>
-                        <div className="mb-4">
-                          <span className="text-4xl font-bold text-white">{pkg.robux}</span>
-                          <span className="text-neon-blue ml-1">ROBUX</span>
-                        </div>
-                        <div className="text-2xl font-semibold text-gray-300">{pkg.price}</div>
-                      </div>
-                      
-                      <ul className="space-y-3 mb-6 flex-grow">
-                        {pkg.features.map((feature, index) => (
-                          <li key={index} className="flex items-center">
-                            <ShieldCheck className={`w-5 h-5 mr-2 ${pkg.popular ? 'text-neon-purple' : 'text-neon-blue'}`} />
-                            <span className="text-gray-300">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <Button 
-                        className={pkg.popular ? 
-                          "w-full bg-neon-purple hover:bg-neon-purple/80 text-white" : 
-                          "w-full bg-transparent border border-neon-blue hover:bg-neon-blue/20 text-white"
-                        }
-                        onClick={() => handleBuyNow(pkg)}
-                      >
-                        Comprar Agora <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-0 top-1/2" />
-              <CarouselNext className="absolute right-0 top-1/2" />
-            </Carousel>
-          </div>
-          
-          {/* Pro Package Carousel */}
-          <div className="relative">
-            <Carousel className="w-full">
-              <CarouselContent>
-                {planPackages.pro.map((pkg) => (
-                  <CarouselItem key={pkg.id}>
-                    <div className={`relative rounded-lg border border-gray-700 bg-gradient-to-b from-dark-bg to-darker-bg p-6 flex flex-col h-full min-h-[400px]`}>
-                      <div className="text-center mb-6">
-                        <h3 className="text-xl font-semibold text-white mb-2">{pkg.name}</h3>
-                        <div className="mb-4">
-                          <span className="text-4xl font-bold text-white">{pkg.robux}</span>
-                          <span className="text-neon-blue ml-1">ROBUX</span>
-                        </div>
-                        <div className="text-2xl font-semibold text-gray-300">{pkg.price}</div>
-                      </div>
-                      
-                      <ul className="space-y-3 mb-6 flex-grow">
-                        {pkg.features.map((feature, index) => (
-                          <li key={index} className="flex items-center">
-                            <ShieldCheck className="w-5 h-5 mr-2 text-neon-blue" />
-                            <span className="text-gray-300">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <Button 
-                        className="w-full bg-transparent border border-neon-blue hover:bg-neon-blue/20 text-white"
-                        onClick={() => handleBuyNow(pkg)}
-                      >
-                        Comprar Agora <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-0 top-1/2" />
-              <CarouselNext className="absolute right-0 top-1/2" />
-            </Carousel>
-          </div>
+        {/* Basic Plans */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+          {renderPackageCarousel('starter', planPackages.starter)}
+          {renderPackageCarousel('standard', planPackages.standard)}
+          {renderPackageCarousel('pro', planPackages.pro)}
+        </div>
+        
+        {/* Premium Plans */}
+        <div className="mt-12 text-center mb-8">
+          <h2 className="text-3xl font-bold mb-4">
+            <span className="neon-text-purple">Planos Premium</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto mb-10">
+            Para os jogadores mais exigentes, nossos planos premium oferecem os melhores benefícios e valores em Robux.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {renderPackageCarousel('god', planPackages.god)}
+          {renderPackageCarousel('hacker', planPackages.hacker)}
         </div>
       </div>
     </section>

@@ -74,6 +74,11 @@
     @apply text-neon-purple;
     text-shadow: 0 0 5px theme('colors.neon-purple'), 0 0 10px rgba(139, 92, 246, 0.5);
   }
+ 
+  .neon-text-green {
+    @apply text-neon-green;
+    text-shadow: 0 0 5px theme('colors.neon-green'), 0 0 10px rgba(0, 255, 0, 1);
+  }
   
   .neon-button {
     @apply bg-gradient-to-r from-neon-blue to-neon-purple text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 relative overflow-hidden;

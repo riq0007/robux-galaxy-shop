@@ -1,13 +1,12 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-
 const HeroSection = () => {
-  const { isAuthenticated } = useAuth();
-  
+  const {
+    isAuthenticated
+  } = useAuth();
   return <section className="pt-32 pb-20 relative">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1633320926216-85d7c479d350?q=80&w=1974')] bg-cover bg-center opacity-10"></div>
       
@@ -15,7 +14,7 @@ const HeroSection = () => {
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block">O Melhor Lugar para</span>
-            <span className="neon-text-green"> Comprar</span>
+            <span className="neon-text-green">Comprar </span>
             <span className="neon-text-blue">Robux </span> 
             <span className="text-white">para Seus</span> 
             <span className="neon-text-purple"> Jogos</span>
@@ -57,5 +56,4 @@ const HeroSection = () => {
       </div>
     </section>;
 };
-
 export default HeroSection;

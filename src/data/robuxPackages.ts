@@ -14,7 +14,7 @@ export const allPackages: RobuxPackage[] = [
   // Starter plans
   {
     id: 101,
-    name: "Starter",
+    name: "Roblox",
     robux: "400",
     price: "R$19,90",
     features: ["Entrega Instantânea", "Suporte por Email", "Suporte Discord"],
@@ -23,7 +23,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 102,
-    name: "Starter Plus",
+    name: "Roblox",
     robux: "600",
     price: "R$27,90",
     features: ["Entrega Instantânea", "Suporte por Email", "Suporte Discord"],
@@ -32,7 +32,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 103,
-    name: "Starter Pro",
+    name: "Roblox",
     robux: "700",
     price: "R$30,90",
     features: ["Entrega Instantânea", "Suporte por Email", "Suporte Discord", "Bônus Exclusivos"],
@@ -43,7 +43,7 @@ export const allPackages: RobuxPackage[] = [
   // Standard plans
   {
     id: 201,
-    name: "Standard",
+    name: "Roblox",
     robux: "800",
     price: "R$34,90",
     features: ["Entrega Instantânea", "Suporte Prioritário", "Suporte Discord", "Benefícios de Membro"],
@@ -52,7 +52,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 202,
-    name: "Standard Plus",
+    name: "Roblox",
     robux: "1200",
     price: "R$48,90",
     features: ["Entrega Instantânea", "Suporte Prioritário", "Suporte Discord", "Benefícios de Membro"],
@@ -61,7 +61,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 203,
-    name: "Standard Pro",
+    name: "Roblox",
     robux: "1500",
     price: "R$58,90",
     features: ["Entrega Instantânea", "Suporte Prioritário", "Suporte Discord", "Benefícios de Membro", "Bônus Exclusivos"],
@@ -72,7 +72,7 @@ export const allPackages: RobuxPackage[] = [
   // Pro plans
   {
     id: 301,
-    name: "Pro Gamer",
+    name: "Roblox",
     robux: "1700",
     price: "R$69,90",
     features: ["Entrega Instantânea", "Suporte VIP", "Suporte Discord", "Benefícios de Membro", "Vantagens Exclusivas"],
@@ -81,7 +81,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 302,
-    name: "Pro Gamer Plus",
+    name: "Roblox",
     robux: "2200",
     price: "R$87,90",
     features: ["Entrega Instantânea", "Suporte VIP", "Suporte Discord", "Benefícios de Membro", "Vantagens Exclusivas"],
@@ -90,7 +90,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 303,
-    name: "Pro Gamer Ultimate",
+    name: "Roblox",
     robux: "3000",
     price: "R$115,90",
     features: ["Entrega Instantânea", "Suporte VIP", "Suporte Discord", "Benefícios de Membro", "Vantagens Exclusivas", "Bônus Mensais"],
@@ -101,7 +101,7 @@ export const allPackages: RobuxPackage[] = [
   // God plans
   {
     id: 401,
-    name: "God",
+    name: "Roblox",
     robux: "4000",
     price: "R$159,90",
     features: ["Entrega Instantânea", "Suporte Premium", "Suporte Discord Exclusivo", "Benefícios VIP", "Vantagens Exclusivas", "Acesso Antecipado"],
@@ -110,7 +110,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 402,
-    name: "God Plus",
+    name: "Roblox",
     robux: "5000",
     price: "R$189,90",
     features: ["Entrega Instantânea", "Suporte Premium", "Suporte Discord Exclusivo", "Benefícios VIP", "Vantagens Exclusivas", "Acesso Antecipado"],
@@ -119,7 +119,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 403,
-    name: "God Ultimate",
+    name: "Roblox",
     robux: "6000",
     price: "R$219,90",
     features: ["Entrega Instantânea", "Suporte Premium", "Suporte Discord Exclusivo", "Benefícios VIP", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Exclusivos"],
@@ -130,7 +130,7 @@ export const allPackages: RobuxPackage[] = [
   // Premium plans
   {
     id: 501,
-    name: "Hacker",
+    name: "Roblox",
     robux: "7000",
     price: "R$249,90",
     features: ["Entrega Instantânea", "Suporte Dedicado", "Suporte Discord Privado", "Benefícios Premium", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Raros"],
@@ -139,7 +139,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 502,
-    name: "Admin",
+    name: "Roblox",
     robux: "8500",
     price: "R$299,90",
     features: ["Entrega Instantânea", "Suporte Exclusivo", "Suporte Discord Privado", "Benefícios Premium", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Raros", "Convites Especiais"],
@@ -148,7 +148,7 @@ export const allPackages: RobuxPackage[] = [
   },
   {
     id: 503,
-    name: "VIP",
+    name: "RobloxVIP",
     robux: "10000",
     price: "R$349,90",
     features: ["Entrega Instantânea", "Suporte Personalizado", "Suporte Discord Privado", "Benefícios Premium", "Vantagens Exclusivas", "Acesso Antecipado", "Itens Legendários", "Convites VIP", "Eventos Exclusivos"],

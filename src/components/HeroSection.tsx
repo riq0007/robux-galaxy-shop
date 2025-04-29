@@ -9,7 +9,8 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block">O Melhor Lugar para Comprar</span>
+            <span className="block">O Melhor Lugar para</span>
+            <span className="neon-text-green"> Comprar</span>
             <span className="neon-text-blue">Robux </span> 
             <span className="text-white">para Seus</span> 
             <span className="neon-text-purple"> Jogos</span>

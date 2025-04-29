@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -259,6 +258,18 @@ const Admin = () => {
     }
   };
 
+  const viewUserOrders = (userId: string, userName: string) => {
+    // Set search term to filter orders by this user
+    setSearchTerm(userName);
+    // Switch to orders tab
+    setActiveTab('orders');
+    // Show success message
+    toast({
+      title: "Filtrando pedidos",
+      description: `Mostrando pedidos do usuário ${userName}`,
+    });
+  };
+
   if (!isAdmin) {
     return <div className="p-8 text-center">Carregando...</div>;
   }
@@ -430,7 +441,15 @@ const Admin = () => {
                         filteredOrders.map((order) => (
                           <TableRow key={order.id} className="hover:bg-neon-blue/5">
                             <TableCell className="font-medium">#{order.id.split('-')[1]}</TableCell>
-                            <TableCell>{order.userName}</TableCell>
+                            <TableCell>
+                              <Button 
+                                variant="link" 
+                                onClick={() => viewUserOrders(order.userId, order.userName)}
+                                className="p-0 h-auto font-normal text-neon-blue hover:text-neon-purple"
+                              >
+                                {order.userName}
+                              </Button>
+                            </TableCell>
                             <TableCell>{order.robloxNickname || 'N/A'}</TableCell>
                             <TableCell>{order.discordHandle || 'N/A'}</TableCell>
                             <TableCell>R$ {order.totalAmount.toFixed(2).replace('.', ',')}</TableCell>
@@ -494,7 +513,13 @@ const Admin = () => {
                         <TableCell>{user.created}</TableCell>
                         <TableCell>{user.role || 'usuário'}</TableCell>
                         <TableCell className="text-right">
-                          <Button variant="ghost" size="sm">Ver detalhes</Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => viewUserOrders(user.id, user.name)}
+                          >
+                            Ver pedidos
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -636,7 +661,16 @@ const Admin = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
                 <div>
                   <h3 className="text-sm text-gray-400 mb-1">Usuário</h3>
-                  <p className="font-medium">{selectedOrder.userName}</p>
+                  <Button 
+                    variant="link" 
+                    onClick={() => {
+                      viewUserOrders(selectedOrder.userId, selectedOrder.userName);
+                      setSelectedOrder(null);
+                    }}
+                    className="p-0 h-auto font-normal text-neon-blue hover:text-neon-purple"
+                  >
+                    {selectedOrder.userName}
+                  </Button>
                 </div>
                 
                 <div>

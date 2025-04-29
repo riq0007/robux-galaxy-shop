@@ -56,7 +56,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center mt-2 md:mt-0">
               <Star className="w-5 h-5 text-neon-purple mr-2" />
-              <span className="text-gray-300">Planos VIP até 10000 Robux</span>
+              <span className="text-gray-300">Pacotes de 400 até 10000 Robux</span>
             </div>
           </div>
         </div>

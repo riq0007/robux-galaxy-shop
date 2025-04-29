@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -20,8 +19,28 @@ import {
 } from "@/components/ui/table";
 import { useToast } from '@/hooks/use-toast';
 
+// Define proper TypeScript interface for orders
+interface Order {
+  id: string;
+  userId: string;
+  user: string;
+  product: string;
+  price: string;
+  status: string;
+  created: string;
+  deliveredAt?: string;
+  comment?: string;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  created: string;
+}
+
 // Mock data for demo
-const MOCK_USERS = [
+const MOCK_USERS: User[] = [
   { id: 'user-1', name: 'João Silva', email: 'joao@example.com', created: '2023-10-15' },
   { id: 'user-2', name: 'Maria Oliveira', email: 'maria@example.com', created: '2023-11-20' },
   { id: 'user-3', name: 'Pedro Santos', email: 'pedro@example.com', created: '2023-12-05' },
@@ -29,7 +48,7 @@ const MOCK_USERS = [
   { id: 'user-5', name: 'Lucas Ferreira', email: 'lucas@example.com', created: '2024-02-12' },
 ];
 
-const MOCK_ORDERS = [
+const MOCK_ORDERS: Order[] = [
   { 
     id: 'order-1', 
     userId: 'user-2', 
@@ -82,9 +101,9 @@ const MOCK_ORDERS = [
 const Admin = () => {
   const { user, isAdmin, requireAdmin, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('orders');
-  const [orders, setOrders] = useState(MOCK_ORDERS);
+  const [orders, setOrders] = useState<Order[]>(MOCK_ORDERS);
   const [users, setUsers] = useState(MOCK_USERS);
-  const [selectedOrder, setSelectedOrder] = useState<any>(null);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -108,7 +127,7 @@ const Admin = () => {
   );
 
   const updateOrderStatus = (orderId: string, newStatus: string) => {
-    setOrders(orders.map(order => 
+    setOrders(prev => prev.map(order => 
       order.id === orderId 
         ? { 
             ...order, 
@@ -127,7 +146,7 @@ const Admin = () => {
   };
 
   const handleAddComment = (orderId: string, comment: string) => {
-    setOrders(orders.map(order => 
+    setOrders(prev => prev.map(order => 
       order.id === orderId 
         ? { ...order, comment } 
         : order

@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -29,7 +28,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Mock database for demo purposes with predefined users
-const MOCK_USERS = [
+let MOCK_USERS = [
   {
     id: 'admin-1',
     name: 'Administrador',
@@ -103,42 +102,51 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const register = (name: string, email: string, password: string) => {
     setIsLoading(true);
     
-    // Check if email already exists
-    if (MOCK_USERS.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+    try {
+      // Check if email already exists
+      if (MOCK_USERS.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        toast({
+          title: "Erro no cadastro",
+          description: "Este email já está cadastrado",
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+      
+      // Create new user with user role
+      const newUser = {
+        id: `user-${Date.now()}`,
+        name,
+        email,
+        password,
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${Date.now()}`,
+        role: 'user' as UserRole
+      };
+      
+      // Add new user to mock database
+      MOCK_USERS = [...MOCK_USERS, newUser];
+      
+      // Log in the user automatically
+      const { password: _, ...safeUserData } = newUser;
+      setUser(safeUserData);
+      localStorage.setItem('user', JSON.stringify(safeUserData));
+      
+      toast({
+        title: "Cadastro realizado com sucesso",
+        description: `Bem-vindo, ${name}!`,
+      });
+      
+      navigate('/');
+    } catch (error) {
       toast({
         title: "Erro no cadastro",
-        description: "Este email já está cadastrado",
+        description: "Ocorreu um erro ao criar sua conta. Por favor, tente novamente.",
         variant: "destructive"
       });
+    } finally {
       setIsLoading(false);
-      return;
     }
-    
-    // Create new user with user role
-    const newUser = {
-      id: `user-${Date.now()}`,
-      name,
-      email,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${Date.now()}`,
-      role: 'user' as UserRole
-    };
-    
-    // In a real app, you would send this to your backend
-    // For this mock version, we'll add it to our mock database
-    const newUserWithPassword = {...newUser, password};
-    MOCK_USERS.push(newUserWithPassword);
-    
-    // Log in the user automatically
-    setUser(newUser);
-    localStorage.setItem('user', JSON.stringify(newUser));
-    
-    toast({
-      title: "Cadastro realizado com sucesso",
-      description: `Bem-vindo, ${name}!`,
-    });
-    
-    navigate('/');
-    setIsLoading(false);
   };
   
   const logout = () => {

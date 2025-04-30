@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Instagram, Twitter, Youtube, Mail, Phone } from "lucide-react";
 import { Link } from 'react-router-dom';
@@ -13,8 +12,8 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <h2 className="text-2xl font-bold">
-                <span className="neon-text-blue">ROBUX</span>
-                <span className="neon-text-purple">GALAXY</span>
+                <span className="neon-text-blue">POPOTA</span>
+                <span className="neon-text-purple">SHOP</span>
               </h2>
             </div>
             <p className="text-gray-400 mb-4">
@@ -69,7 +68,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Robux Galaxy Shop. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Popota Shop. All rights reserved.</p>
           <p className="mt-2 text-xs">Not affiliated with Roblox Corporation.</p>
         </div>
       </div>

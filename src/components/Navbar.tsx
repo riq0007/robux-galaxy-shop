@@ -29,7 +29,7 @@ const Navbar = () => {
         {/* Left side: Logo and navigation links */}
         <div className="flex items-center space-x-8">
           <Link to="/" className="text-2xl font-bold neon-text-blue">
-            LOV<span className="neon-text-purple">CODE</span>
+            POP<span className="neon-text-purple">OTA</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
             <Link to="/catalog" className="hover:text-gray-300">

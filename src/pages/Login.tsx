@@ -85,8 +85,8 @@ const Login = () => {
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <Link to="/" className="flex items-center justify-center space-x-2 mb-6">
-              <span className="text-3xl font-bold neon-text-blue">ROBUX</span>
-              <span className="text-3xl font-bold neon-text-purple">GALAXY</span>
+              <span className="text-3xl font-bold neon-text-blue">POPOTA</span>
+              <span className="text-3xl font-bold neon-text-purple">SHOP</span>
             </Link>
             <h1 className="text-2xl md:text-3xl font-bold mb-2">
               {activeTab === 'login' ? 'Bem-vindo de volta!' : 'Crie sua conta'}

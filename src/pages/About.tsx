@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -13,7 +12,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-white">About</span> <span className="neon-text-blue">Robux Galaxy</span>
+              <span className="text-white">About</span> <span className="neon-text-blue">Popota Shop</span>
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto">
               Learn more about who we are and why thousands of gamers trust us for their gaming currency needs.
@@ -24,13 +23,13 @@ const About = () => {
             <div>
               <h2 className="text-2xl font-bold mb-4"><span className="neon-text-purple">Our</span> Story</h2>
               <p className="text-gray-300 mb-4">
-                Founded in 2023, Robux Galaxy began with a simple mission: to provide gamers with a safe, affordable, and fast way to get the in-game currency they need to enhance their gaming experience.
+                Founded in 2023, Popota Shop began with a simple mission: to provide gamers with a safe, affordable, and fast way to get the in-game currency they need to enhance their gaming experience.
               </p>
               <p className="text-gray-300 mb-4">
                 What started as a small operation quickly grew as word spread about our reliable service, competitive prices, and exceptional customer support. Today, we're proud to serve thousands of satisfied customers across Brazil and beyond.
               </p>
               <p className="text-gray-300">
-                At Robux Galaxy, we understand the importance of trust in this industry. That's why we've built our business on principles of transparency, security, and customer satisfaction.
+                At Popota Shop, we understand the importance of trust in this industry. That's why we've built our business on principles of transparency, security, and customer satisfaction.
               </p>
             </div>
             
@@ -91,7 +90,7 @@ const About = () => {
               <p className="text-xl text-white italic">
                 "We're gamers too, and we built the service we wished existed."
               </p>
-              <p className="text-neon-blue mt-2">- Robux Galaxy Team</p>
+              <p className="text-neon-blue mt-2">- Popota Shop Team</p>
             </div>
           </div>
         </div>

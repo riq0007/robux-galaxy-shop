@@ -221,8 +221,8 @@ const Login = () => {
                         <div className="relative">
                           <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                           <Input 
-                            placeholder="Seu nome" 
-                            className="pl-10 bg-darker-bg border-gray-700"
+                            placeholder="Digite seu nome completo" 
+                            className="pl-10 bg-darker-bg border-gray-700 text-white placeholder:text-gray-500"
                             {...field} 
                           />
                         </div>
@@ -242,8 +242,8 @@ const Login = () => {
                         <div className="relative">
                           <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                           <Input 
-                            placeholder="seu@email.com" 
-                            className="pl-10 bg-darker-bg border-gray-700"
+                            placeholder="Digite seu email" 
+                            className="pl-10 bg-darker-bg border-gray-700 text-white placeholder:text-gray-500"
                             {...field} 
                           />
                         </div>
@@ -264,8 +264,8 @@ const Login = () => {
                           <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                           <Input 
                             type="password"
-                            placeholder="••••••••" 
-                            className="pl-10 bg-darker-bg border-gray-700"
+                            placeholder="Digite sua senha" 
+                            className="pl-10 bg-darker-bg border-gray-700 text-white placeholder:text-gray-500"
                             {...field} 
                           />
                         </div>
@@ -286,8 +286,8 @@ const Login = () => {
                           <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                           <Input 
                             type="password"
-                            placeholder="••••••••" 
-                            className="pl-10 bg-darker-bg border-gray-700"
+                            placeholder="Confirme sua senha" 
+                            className="pl-10 bg-darker-bg border-gray-700 text-white placeholder:text-gray-500"
                             {...field} 
                           />
                         </div>
